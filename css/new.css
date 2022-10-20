@@ -35,11 +35,18 @@ ul {
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: all 1s;
 }
 
 .parrot {
     width: 100px;
 }
+
+.costas {
+    background-color: blue;
+    transform: rotateY(180deg)
+}
+
 
 @media (max-width: 500px) {
     h1 {

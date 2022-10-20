@@ -18,10 +18,10 @@ function adicionarcartas() {
             const adicioanarCartas = document.querySelector("ul");
             adicioanarCartas.innerHTML += `<li>
         <div class="dupla">
-            <div class="carta">
+            <div onclick="virar(this)" class="carta">
                 <img class="parrot" src="./img/back.png" alt="">
             </div>
-            <div class="carta">
+            <div onclick="virar(this)" class="carta">
                 <img class="parrot" src="./img/back.png" alt="">
             </div>
         </div>
@@ -35,3 +35,7 @@ function adicionarcartas() {
     }
 }
 adicionarcartas();
+
+function virar(elemento) {
+    elemento.classList.toggle("costas")
+}
