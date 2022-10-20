@@ -19,14 +19,10 @@ h1 {
 
 ul {
     display: flex;
-    height: 400px;
 }
 
 .dupla {
-    width: 117px;
-    height: 365px;
     margin: 0px 17px 0px 17px;
-
 }
 
 .carta {
@@ -43,4 +39,17 @@ ul {
 
 .parrot {
     width: 100px;
+}
+
+@media (max-width: 500px) {
+    h1 {
+        width: 312px;
+        font-size: 36px;
+        line-height: 42px;
+        color: #75B79E;
+    }
+
+    ul {
+        flex-direction: column;
+    }
 }
