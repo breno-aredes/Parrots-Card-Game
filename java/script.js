@@ -7,7 +7,7 @@ function adicionarcartas() {
     //Contante para verificar se é par.
     let resto = perguntaNumero % 2;
     //divide por 2 para definir o numero de duplas. 
-    let metade = perguntaNumero / 2
+    let metade = perguntaNumero / 2;
 
 
     //se for maior que 4, menor que 14 e par.
@@ -20,12 +20,14 @@ function adicionarcartas() {
         <div class="dupla">
             <div onclick="virar(this)" class="carta">
                 <img class="parrot" src="./img/back.png" alt="">
+                <img class="gif sumir" src="./img/bobrossparrot.gif" alt="">
             </div>
             <div onclick="virar(this)" class="carta">
                 <img class="parrot" src="./img/back.png" alt="">
+                <img class="gif sumir" src="./img/bobrossparrot.gif" alt="">
             </div>
         </div>
-    </li>`
+    </li>`;
         }
 
     }
@@ -36,6 +38,10 @@ function adicionarcartas() {
 }
 adicionarcartas();
 
+//Remove ou adiciona a classe virar na carta, e sumir nas imagens
 function virar(elemento) {
-    elemento.classList.toggle("costas")
+
+    elemento.classList.toggle("virar");
+    elemento.children[0].classList.toggle("sumir");
+    elemento.children[1].classList.toggle("sumir");
 }

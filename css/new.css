@@ -36,17 +36,31 @@ ul {
     align-items: center;
     justify-content: center;
     transition: all 1s;
+    cursor: pointer;
 }
 
-.parrot {
+img {
     width: 100px;
 }
 
-.costas {
-    background-color: blue;
-    transform: rotateY(180deg)
+.parrot {
+    transition-delay: 0.25s;
 }
 
+.gif {
+    position: absolute;
+    transition-delay: 0.25s;
+}
+
+.sumir {
+    opacity: 0;
+
+}
+
+.virar {
+    transform: rotateY(180deg);
+    transition: 1s;
+}
 
 @media (max-width: 500px) {
     h1 {
