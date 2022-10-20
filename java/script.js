@@ -17,11 +17,16 @@ function adicionarcartas() {
     let metade = perguntaNumero / 2;
     //nova lista onde sera distribuidos todos os elementos de acordo com o numero digitado .
     let novalista = [];
-    //função que fomar a nova lista
+    //fomar a nova lista
     for (i = 0; perguntaNumero > i; i++) {
         novalista[i] = listaGifs[i];
-        alert(novalista);
     }
+
+    //função deixar a lista aleatoria.
+    function comparador() {
+        return Math.random() - 0.5;
+    }
+    novalista.sort(comparador);
 
     //se for maior que 4, menor que 14 e par.
     if (perguntaNumero >= 4 && perguntaNumero <= 14 && resto === 0) {
