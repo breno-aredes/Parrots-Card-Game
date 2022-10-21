@@ -55,12 +55,41 @@ function adicionarcartas() {
 }
 adicionarcartas();
 
+let contadorDeCartasViradas = 0;
+let listaDeCartasViradas = [];
+
 //Remove ou adiciona a classe virar na carta, e sumir nas imagens
 function virar(elemento) {
+
+    //if  vira else if vira else desvira 
 
     elemento.classList.toggle("virar");
     elemento.children[0].classList.toggle("sumir");
     elemento.children[1].classList.toggle("sumir");
+
+    //tentando resolver para virar carta
+    /* listaDeCartasViradas[contadorDeCartasViradas] = elemento 
+ 
+     contadorDeCartasViradas++
+ 
+     alert(elemento.children[1])
+     alert(elemento.children[0])
+ 
+     if (contadorDeCartasViradas === 2 && listaDeCartasViradas[0].children[1] !== listaDeCartasViradas[1].children[1]) {
+ 
+         listaDeCartasViradas[0].classList.toggle("virar");
+         listaDeCartasViradas[0].children[0].classList.toggle("sumir");
+         listaDeCartasViradas[0].children[1].classList.toggle("sumir");
+ 
+         listaDeCartasViradas[1].classList.toggle("virar");
+         listaDeCartasViradas[1].children[0].classList.toggle("sumir");
+         listaDeCartasViradas[1].children[1].classList.toggle("sumir");
+ 
+         contadorDeCartasViradas = 0;
+     } */
+
+
+    //uma variavel salva. segunda variavel compara.
 }
 
 // Comparar a igualdade das imagens ao serem viradas. ????
