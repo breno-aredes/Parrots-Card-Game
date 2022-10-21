@@ -4,8 +4,6 @@ let listaGifs = [`/img/bobrossparrot.gif`, `/img/bobrossparrot.gif`, `/img/explo
     `/img/metalparrot.gif`, `/img/revertitparrot.gif`, `/img/revertitparrot.gif`, `/img/tripletsparrot.gif`,
     `/img/tripletsparrot.gif`, `/img/unicornparrot.gif`, `/img/unicornparrot.gif`];
 
-
-
 //função para adicionar cartas de acondo com o numero digitado.
 function adicionarcartas() {
 
@@ -31,7 +29,6 @@ function adicionarcartas() {
     //se for maior que 4, menor que 14 e par.
     if (perguntaNumero >= 4 && perguntaNumero <= 14 && resto === 0) {
 
-
         //enquanto o contador for menor que a metade adiciona dupla de cartas.
         for (i = 0; metade > i; i++) {
             const adicioanarCartas = document.querySelector("ul");
@@ -47,9 +44,9 @@ function adicionarcartas() {
                 <img class="gif sumir" src=".${novalista[metade + i]}" alt="">
             </div>
         </div>
-    </li>` // nota: lista[i] para a primeira linha lista[metade+i] para a segunda linha
-        }
-
+    </li>`
+        }/* nota: lista[i] para a primeira linha lista[metade+i] para a segunda linha ja que ultilizei a metede 
+    do numero digitado para criar o for e coloquei cartas em coluna de duas em duas*/
     }
     //senão for, reinicia a função, perguntando novamente o numero de cartas.
     else {
@@ -66,10 +63,12 @@ function virar(elemento) {
     elemento.children[1].classList.toggle("sumir");
 }
 
+// Comparar a igualdade das imagens ao serem viradas. ????
+// fixar se iguais / desvirar se diferentes.
+// depois que verificar igualdade a carda deve ficar virada por alguns segundos
+// adicionar contador x de jogadas.
+// exibir mensagem "Você ganhou em x jogadas!" se todas cartas estiverem viradas.
 
-// Embaralhar a lista
-// distribuir a lista nas duas colunas
-// Comparar a igualdade das imagens ao serem viradas
-// fixar se iguais / desvirar se diferentes
-// adicionar contador x de jogadas
-// exibir mensagem "Você ganhou em x jogadas!"
+//                   --------------------bonus--------------------
+//cronometro
+//reiniciar a partida 
