@@ -55,8 +55,8 @@ function adicionarcartas() {
 }
 adicionarcartas();
 
-let contadorDeCartasViradas = 0;
-let listaDeCartasViradas = [];
+let contadorDeCartasViradas = 0; //1 2
+let listaDeCartasViradas = [];  // lista[carta1,carta2]
 
 //Remove ou adiciona a classe virar na carta, e sumir nas imagens
 function virar(elemento) {
@@ -68,31 +68,23 @@ function virar(elemento) {
     elemento.children[1].classList.toggle("sumir");
 
     //tentando resolver para virar carta
-    /* listaDeCartasViradas[contadorDeCartasViradas] = elemento 
- 
-     contadorDeCartasViradas++
- 
-     alert(elemento.children[1])
-     alert(elemento.children[0])
- 
-     if (contadorDeCartasViradas === 2 && listaDeCartasViradas[0].children[1] !== listaDeCartasViradas[1].children[1]) {
- 
-         listaDeCartasViradas[0].classList.toggle("virar");
-         listaDeCartasViradas[0].children[0].classList.toggle("sumir");
-         listaDeCartasViradas[0].children[1].classList.toggle("sumir");
- 
-         listaDeCartasViradas[1].classList.toggle("virar");
-         listaDeCartasViradas[1].children[0].classList.toggle("sumir");
-         listaDeCartasViradas[1].children[1].classList.toggle("sumir");
- 
-         contadorDeCartasViradas = 0;
-     } */
+    listaDeCartasViradas[contadorDeCartasViradas] = elemento.children[1].src
+
+    contadorDeCartasViradas++
+
+    if (contadorDeCartasViradas === 2 && listaDeCartasViradas[0] !== listaDeCartasViradas[1]) {
+        //alert("são diferentes")
+        contadorDeCartasViradas = 0;
+    }
+    if (contadorDeCartasViradas === 2 && listaDeCartasViradas[0] === listaDeCartasViradas[1]) {
+        //alert("são iguais")
+        contadorDeCartasViradas = 0;
+    }
 
 
     //uma variavel salva. segunda variavel compara.
 }
 
-// Comparar a igualdade das imagens ao serem viradas. ????
 // fixar se iguais / desvirar se diferentes.
 // depois que verificar igualdade a carda deve ficar virada por alguns segundos
 // adicionar contador x de jogadas.
