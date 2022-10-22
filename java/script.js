@@ -4,11 +4,14 @@ let listaGifs = [`/img/bobrossparrot.gif`, `/img/bobrossparrot.gif`, `/img/explo
     `/img/metalparrot.gif`, `/img/revertitparrot.gif`, `/img/revertitparrot.gif`, `/img/tripletsparrot.gif`,
     `/img/tripletsparrot.gif`, `/img/unicornparrot.gif`, `/img/unicornparrot.gif`];
 
+//cria variavel que recebera numero de cartas
+let perguntaNumero = 0;
+
 //função para adicionar cartas de acondo com o numero digitado.
 function adicionarcartas() {
 
     //Pergunta ao usuraio numero de cartas.
-    let perguntaNumero = prompt("Com quantas cartas quer Jogar");
+    perguntaNumero = prompt("Com quantas cartas quer Jogar");
     //Contante para verificar se é par.
     let resto = perguntaNumero % 2;
     //divide por 2 para definir o numero de duplas. 
@@ -55,6 +58,7 @@ function adicionarcartas() {
 }
 adicionarcartas();
 
+let contadorDeJogadas = 0;
 let contadorDeCartasViradas = 0;
 //lista que recebe os elementos
 let listaDeCartasViradas = [];
@@ -68,8 +72,9 @@ function virar(elemento) {
 
     //salva o elemento na lista para comparar depois
     listaDeCartasViradas[contadorDeCartasViradas] = elemento
-    // contador recebe +1
+    // contador recebe  +1
     contadorDeCartasViradas++
+    contadorDeJogadas++
 
     // se contadorDeCartas for igual 2 e as cartas diferentes
     // esta sendo comparado o src do segundo filho do elemento (o diretorio dos gifs)
@@ -79,7 +84,7 @@ function virar(elemento) {
 
     }
     // se contadorDeCartas for igual 2 e as cartas iguais
-    if (contadorDeCartasViradas === 2 && listaDeCartasViradas[0].children[1].src === listaDeCartasViradas[1].children[1].src) {
+    else if (contadorDeCartasViradas === 2 && listaDeCartasViradas[0].children[1].src === listaDeCartasViradas[1].children[1].src) {
 
         naoVira();
 
@@ -93,7 +98,6 @@ function desvirar() {
     listaDeCartasViradas[0].children[0].classList.toggle("sumir");
     listaDeCartasViradas[0].children[1].classList.toggle("sumir");
 
-
     listaDeCartasViradas[1].classList.toggle("virar");
     listaDeCartasViradas[1].children[0].classList.toggle("sumir");
     listaDeCartasViradas[1].children[1].classList.toggle("sumir");
@@ -101,19 +105,28 @@ function desvirar() {
     contadorDeCartasViradas = 0;
 }
 
+//desativa o ponteiro, impedindo o click.
 function naoVira() {
     listaDeCartasViradas[0].classList.add("desativa");
 
-
     listaDeCartasViradas[1].classList.add("desativa");
-
 
     contadorDeCartasViradas = 0;
 
+    //para aparecer você ganhou apos a carta virar.
+    setTimeout(verificaSeGanhou, 500);
 }
 
-// adicionar contador x de jogadas.
-// exibir mensagem "Você ganhou em x jogadas!" se todas cartas estiverem viradas.
+//conta quantas cartas tem a classe .desativa, e compara com o numero de cartas digitada para começar o jogo.
+function verificaSeGanhou() {
+    let numerodecartasviradas = (document.querySelectorAll('.desativa').length);
+    if (Number(perguntaNumero) === numerodecartasviradas) {
+        //não encontrei o motivo de ter que transformar a variavel em numero, mas so funcionou assim.
+        alert('você ganhou');
+    }
+}
+
+//bug: carta deixa de ser clicavel quando vira e desvira manualmente.
 
 //                   --------------------bonus--------------------
 //cronometro
