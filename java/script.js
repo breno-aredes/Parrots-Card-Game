@@ -55,38 +55,63 @@ function adicionarcartas() {
 }
 adicionarcartas();
 
-let contadorDeCartasViradas = 0; //1 2
-let listaDeCartasViradas = [];  // lista[carta1,carta2]
+let contadorDeCartasViradas = 0;
+//lista que recebe os elementos
+let listaDeCartasViradas = [];
 
 //Remove ou adiciona a classe virar na carta, e sumir nas imagens
 function virar(elemento) {
-
-    //if  vira else if vira else desvira 
 
     elemento.classList.toggle("virar");
     elemento.children[0].classList.toggle("sumir");
     elemento.children[1].classList.toggle("sumir");
 
-    //tentando resolver para virar carta
-    listaDeCartasViradas[contadorDeCartasViradas] = elemento.children[1].src
-
+    //salva o elemento na lista para comparar depois
+    listaDeCartasViradas[contadorDeCartasViradas] = elemento
+    // contador recebe +1
     contadorDeCartasViradas++
 
-    if (contadorDeCartasViradas === 2 && listaDeCartasViradas[0] !== listaDeCartasViradas[1]) {
-        //alert("são diferentes")
+    // se contadorDeCartas for igual 2 e as cartas diferentes
+    // esta sendo comparado o src do segundo filho do elemento (o diretorio dos gifs)
+    if (contadorDeCartasViradas === 2 && listaDeCartasViradas[0].children[1].src !== listaDeCartasViradas[1].children[1].src) {
+        // função pré definida para demorar 1000 milissegundos(1s) para executar a outra função
+        setTimeout(desvirar, 1000);
+
+    }
+    // se contadorDeCartas for igual 2 e as cartas iguais
+    if (contadorDeCartasViradas === 2 && listaDeCartasViradas[0].children[1].src === listaDeCartasViradas[1].children[1].src) {
+
+        naoVira();
+
         contadorDeCartasViradas = 0;
     }
-    if (contadorDeCartasViradas === 2 && listaDeCartasViradas[0] === listaDeCartasViradas[1]) {
-        //alert("são iguais")
-        contadorDeCartasViradas = 0;
-    }
-
-
-    //uma variavel salva. segunda variavel compara.
 }
 
-// fixar se iguais / desvirar se diferentes.
-// depois que verificar igualdade a carda deve ficar virada por alguns segundos
+//função para desvirar as cartas quando elas forem diferentes
+function desvirar() {
+    listaDeCartasViradas[0].classList.toggle("virar");
+    listaDeCartasViradas[0].children[0].classList.toggle("sumir");
+    listaDeCartasViradas[0].children[1].classList.toggle("sumir");
+
+
+    listaDeCartasViradas[1].classList.toggle("virar");
+    listaDeCartasViradas[1].children[0].classList.toggle("sumir");
+    listaDeCartasViradas[1].children[1].classList.toggle("sumir");
+
+    contadorDeCartasViradas = 0;
+}
+
+function naoVira() {
+    listaDeCartasViradas[0].classList.add("desativa");
+
+
+    listaDeCartasViradas[1].classList.add("desativa");
+
+
+    contadorDeCartasViradas = 0;
+
+}
+
 // adicionar contador x de jogadas.
 // exibir mensagem "Você ganhou em x jogadas!" se todas cartas estiverem viradas.
 

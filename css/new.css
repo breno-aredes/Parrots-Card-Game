@@ -61,6 +61,10 @@ img {
     transition: 1s;
 }
 
+.desativa {
+    pointer-events: none;
+}
+
 @media (max-width: 500px) {
     h1 {
         width: 312px;
