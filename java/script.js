@@ -4,8 +4,10 @@ let listaGifs = [`/img/bobrossparrot.gif`, `/img/bobrossparrot.gif`, `/img/explo
     `/img/metalparrot.gif`, `/img/revertitparrot.gif`, `/img/revertitparrot.gif`, `/img/tripletsparrot.gif`,
     `/img/tripletsparrot.gif`, `/img/unicornparrot.gif`, `/img/unicornparrot.gif`];
 
-//cria variavel que recebera numero de cartas
+//cria variavel que recebera numero de cartas.
 let perguntaNumero = 0;
+//cria a variavel para contar segundos.
+let contadorCronometro = 0;
 
 //função para adicionar cartas de acondo com o numero digitado.
 function adicionarcartas() {
@@ -32,6 +34,8 @@ function adicionarcartas() {
     //se for maior que 4, menor que 14 e par.
     if (perguntaNumero >= 4 && perguntaNumero <= 14 && resto === 0) {
 
+        //cronometro volta a ser 0, para iniciar nova contagem.
+        contadorCronometro = 0;
         //enquanto o contador for menor que a metade adiciona dupla de cartas.
         for (i = 0; metade > i; i++) {
             const adicioanarCartas = document.querySelector("ul");
@@ -47,7 +51,7 @@ function adicionarcartas() {
                 <img class="gif sumir" src=".${novalista[metade + i]}" alt="">
             </div>
         </div>
-    </li>`
+    </li>`;
         }/* nota: lista[i] para a primeira linha lista[metade+i] para a segunda linha ja que ultilizei a metede 
     do numero digitado para criar o for e coloquei cartas em coluna de duas em duas*/
     }
@@ -56,63 +60,50 @@ function adicionarcartas() {
         adicionarcartas();
     }
 }
+
 adicionarcartas();
 
 let contadorDeJogadas = 0;
 let contadorDeCartasViradas = 0;
 //lista que recebe os elementos
 let listaDeCartasViradas = [];
-
 //Remove ou adiciona a classe virar na carta, e sumir nas imagens
 function virar(elemento) {
-
     elemento.classList.toggle("virar");
     elemento.children[0].classList.toggle("sumir");
     elemento.children[1].classList.toggle("sumir");
-
     //salva o elemento na lista para comparar depois
-    listaDeCartasViradas[contadorDeCartasViradas] = elemento
+    listaDeCartasViradas[contadorDeCartasViradas] = elemento;
     // contador recebe  +1
     contadorDeCartasViradas++
     contadorDeJogadas++
-
     // se contadorDeCartas for igual 2 e as cartas diferentes
     // esta sendo comparado o src do segundo filho do elemento (o diretorio dos gifs)
     if (contadorDeCartasViradas === 2 && listaDeCartasViradas[0].children[1].src !== listaDeCartasViradas[1].children[1].src) {
         // função pré definida para demorar 1000 milissegundos(1s) para executar a outra função
         setTimeout(desvirar, 1000);
-
     }
     // se contadorDeCartas for igual 2 e as cartas iguais
     else if (contadorDeCartasViradas === 2 && listaDeCartasViradas[0].children[1].src === listaDeCartasViradas[1].children[1].src) {
-
         naoVira();
-
         contadorDeCartasViradas = 0;
     }
 }
-
 //função para desvirar as cartas quando elas forem diferentes
 function desvirar() {
     listaDeCartasViradas[0].classList.toggle("virar");
     listaDeCartasViradas[0].children[0].classList.toggle("sumir");
     listaDeCartasViradas[0].children[1].classList.toggle("sumir");
-
     listaDeCartasViradas[1].classList.toggle("virar");
     listaDeCartasViradas[1].children[0].classList.toggle("sumir");
     listaDeCartasViradas[1].children[1].classList.toggle("sumir");
-
     contadorDeCartasViradas = 0;
 }
-
 //desativa o ponteiro, impedindo o click.
 function naoVira() {
     listaDeCartasViradas[0].classList.toggle("desativa");
-
     listaDeCartasViradas[1].classList.toggle("desativa");
-
     contadorDeCartasViradas = 0;
-
     //para aparecer você ganhou apos a carta virar.
     setTimeout(verificaSeGanhou, 500);
 }
@@ -123,20 +114,16 @@ function verificaSeGanhou() {
 
     if (Number(perguntaNumero) === numerodecartasviradas) {
         //não encontrei o motivo de ter que transformar a variavel em numero, mas so funcionou assim.
-        alert(`Você ganhou em ${contadorDeJogadas} jogadas!`);
-
+        alert(`Você ganhou em ${contadorDeJogadas} jogadas e em ${contadorCronometro} segundos!`);
         //selecioa a lista ul, zera os elementos 
         const adicioanarCartas = document.querySelector("ul");
         adicioanarCartas.innerHTML = '';
-
         //zera o contador de cartas, para iniciar novamente.
         contadorDeJogadas = 0;
-
         //inicia a função jogar novamente
         jogarDeNovamente();
     }
 }
-
 //função para iniciar o jogo novamente.
 function jogarDeNovamente() {
     let jogarDeNovo = prompt("Quer jogar de novo? (sim ou não)");
@@ -150,10 +137,13 @@ function jogarDeNovamente() {
     }
     // senão for sim nem não, repete a função jogar novamente.
     else {
-        jogarDeNovamente()
+        jogarDeNovamente();
     }
-
 }
-
-//                   --------------------bonus--------------------
-//cronometro.
+//cronometro
+function cronometro() {
+    contadorCronometro++
+    document.querySelector(".cronometro").innerHTML = `${contadorCronometro} s`;
+}
+//executa a função cronometro a cada 1000 milessegundos (1s).
+setInterval(cronometro, 1000);

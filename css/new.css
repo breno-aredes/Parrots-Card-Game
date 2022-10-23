@@ -65,6 +65,24 @@ img {
     pointer-events: none;
 }
 
+.cronometro {
+    position: absolute;
+    background-color: #A7E9AF;
+    top: 5px;
+    right: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 45px;
+    width: 80px;
+    border-radius: 5px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #75B79E;
+    border: 1px solid #75B79E;
+}
+
 @media (max-width: 500px) {
     h1 {
         width: 312px;
