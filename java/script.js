@@ -107,9 +107,9 @@ function desvirar() {
 
 //desativa o ponteiro, impedindo o click.
 function naoVira() {
-    listaDeCartasViradas[0].classList.add("desativa");
+    listaDeCartasViradas[0].classList.toggle("desativa");
 
-    listaDeCartasViradas[1].classList.add("desativa");
+    listaDeCartasViradas[1].classList.toggle("desativa");
 
     contadorDeCartasViradas = 0;
 
@@ -122,11 +122,9 @@ function verificaSeGanhou() {
     let numerodecartasviradas = (document.querySelectorAll('.desativa').length);
     if (Number(perguntaNumero) === numerodecartasviradas) {
         //não encontrei o motivo de ter que transformar a variavel em numero, mas so funcionou assim.
-        alert('você ganhou');
+        alert(`Você ganhou em ${contadorDeJogadas} jogadas!`);
     }
 }
-
-//bug: carta deixa de ser clicavel quando vira e desvira manualmente.
 
 //                   --------------------bonus--------------------
 //cronometro
