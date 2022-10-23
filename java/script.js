@@ -11,7 +11,7 @@ let perguntaNumero = 0;
 function adicionarcartas() {
 
     //Pergunta ao usuraio numero de cartas.
-    perguntaNumero = prompt("Com quantas cartas quer Jogar");
+    perguntaNumero = prompt("Com quantas cartas quer Jogar? (4 a 14)");
     //Contante para verificar se é par.
     let resto = perguntaNumero % 2;
     //divide por 2 para definir o numero de duplas. 
@@ -120,12 +120,40 @@ function naoVira() {
 //conta quantas cartas tem a classe .desativa, e compara com o numero de cartas digitada para começar o jogo.
 function verificaSeGanhou() {
     let numerodecartasviradas = (document.querySelectorAll('.desativa').length);
+
     if (Number(perguntaNumero) === numerodecartasviradas) {
         //não encontrei o motivo de ter que transformar a variavel em numero, mas so funcionou assim.
         alert(`Você ganhou em ${contadorDeJogadas} jogadas!`);
+
+        //selecioa a lista ul, zera os elementos 
+        const adicioanarCartas = document.querySelector("ul");
+        adicioanarCartas.innerHTML = '';
+
+        //zera o contador de cartas, para iniciar novamente.
+        contadorDeJogadas = 0;
+
+        //inicia a função jogar novamente
+        jogarDeNovamente();
     }
 }
 
+//função para iniciar o jogo novamente.
+function jogarDeNovamente() {
+    let jogarDeNovo = prompt("Quer jogar de novo? (sim ou não)");
+
+    //se sim começa a executar o jogo novamente.
+    if (jogarDeNovo === "sim") {
+        adicionarcartas();
+    }
+    //se não, não executa nada.
+    else if (jogarDeNovo === "não") {
+    }
+    // senão for sim nem não, repete a função jogar novamente.
+    else {
+        jogarDeNovamente()
+    }
+
+}
+
 //                   --------------------bonus--------------------
-//cronometro
-//reiniciar a partida 
+//cronometro.
